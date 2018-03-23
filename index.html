@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-	<title>Vue.JS Tests</title>
+	<title>Vue and Video Tests</title>
 
 	<!-- Vue link -->
 	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
@@ -14,7 +14,25 @@
 </head>
 <body>
 
-	
+	<main id="app">
+		<h4 class="welcome-message">{{welcomemessage}}</h4>
+
+		<ul>
+			<li v-for="videos in videoData">
+				<a :href="videos.vidsource" v-on:click="loadMovie">
+					<img :src="'images/' + videos.thumb" :alt="videos.name">
+				</a>
+				<p>{{videos.name}}</p>
+			</li>
+		</ul>
+
+		<p>Click on a poster to play the movie!</p>
+
+		<section>
+			<h3 class="movie-title">{{videoTitle}}</h3>
+			<p class="movie-details">{{videoDesc}}</p>
+		</section>
+	</main>
 
 	<script src="js/main.js"></script>
 </body>

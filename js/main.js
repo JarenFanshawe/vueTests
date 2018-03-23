@@ -3,22 +3,32 @@ const vm = new Vue({
 	el : "#app" ,
 
 	data : {
-		welcomeMessage : "Welcome to your first vue app!",
+		welcomemessage : "Welcome to your first vue app!",
 
-		fruitList : [
-			{ name : "apple", flavour: "tart", color: "green" },
-			{ name : "orange", flavour: "sweet", color: "orange" },
-			{ name : "pineapple", flavour: "tangy", color: "yellow" }
+		videoData : [
+			{ name : "Star Wars: The Force Awakens", thumb : "forceawakens.jpg", vidsource : "forceawakens.mp4", description : "Star Wars movie desc"},
+
+			{ name : "Stranger Things", thumb : "strangerthings.jpg", vidsource : "strangerthings.mp4", description : "Stranger Things TV show desc"},
+
+			{ name : "Marvel's: The Avengers", thumb : "avengers.jpg", vidsource : "avengers.mp4", description : "Avengers movie desc"}
 		],
 
-		hasVue : false,
-
-		vuemessage : "Can you see me now?"
+		videoTitle : "title goes here",
+		videoDesc : "description goes here",
+		videoSource : ""
 	},
 
 	methods : {
-		logClicked(e) {
-			console.log(e.currentTarget, this);
+		loadMovie(e) {
+			e.preventDefault();
+
+			dataKey = e.currentTarget.href.substring(e.currentTarget.href.lastIndexOf('/') +1);
+
+			currentData = this.videoData.filter((video) => video.vidsource === dataKey);
+
+			this.videoTitle = currentData[0].name;
+			this.videoDesc = currentData[0].description;
+			this.videoSource = dataKey;
 		}
 	}
 });
